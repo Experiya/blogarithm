@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+
+{% block title %} BlogHome {% endblock title %}
+
+      
+{% block blogactive %} active {% endblock blogactive %} 
+
+
+{% block body %}
+
+<div class="w-full bg-white">
+
+    <!-- title -->
+    <div class="py-12">
+
+        <h2 class="text-center uppercase text-2xl lg:text-4xl tracking-wider mb-12">Blog Section
+        </h2>
+    
+    </div>
+    <!-- /title -->
+
+    <div class="container max-w-4xl mx-auto md:flex items-start py-8 px-12 md:px-0">
+
+        <!-- articles -->
+        <div class="w-full md:pr-12 mb-12">
+            {% for post in allPosts  %}
+            <article class="mb-12">
+                <h2 class="mb-4">
+                    <a href="/blog/{{post.slug}}" class="text-black text-xl md:text-2xl no-underline hover:underline">
+                        {{post.title}}
+                    </a>
+                </h2>
+
+                <div class="mb-4 text-sm text-gray-700">
+                    Article by <a href="#" class="text-gray-700">{{post.author}} </a> on {{post.timeStamp}}
+                    <span class="font-bold mx-1"> | </span>
+                    <a href="#" class="text-gray-700">Views {{post.views}}</a>
+                    <span class="font-bold mx-1"> | </span>
+                    <a href="#" class="text-gray-700">2 Comments</a>
+                </div>
+
+                <p class="text-gray-700 leading-normal">
+                    {{post.content|safe |truncatechars:500}}
+                </p>
+
+            </article>
+            {% endfor %}
+
+            <div class="flex justify-between text-xs">
+                <a href="#" class="bg-gray text-white no-underline py-2 px-3 rounded">Previous</a>
+                <a href="#" class="bg-black text-white no-underline py-2 px-3 rounded">Next</a>
+            </div>
+        </div>
+        <!--/ articles -->
+
+        <!-- sidebar -->
+        <div class="w-full md:w-64">
+            <aside class="rounded shadow overflow-hidden mb-6">
+                <h3 class="text-sm bg-gray-100 text-gray-700 py-3 px-4 border-b">Categories</h3>
+
+                <div class="p-4">
+                    <ul class="list-reset leading-normal">
+                        <li><a href="#" class="text-gray-darkest text-sm">Uncategorised</a></li>
+                        <li><a href="#" class="text-gray-darkest text-sm">Food &amp; Drink</a></li>
+                        <li><a href="#" class="text-gray-darkest text-sm">Garden</a></li>
+                        <li><a href="#" class="text-gray-darkest text-sm">Tools</a></li>
+                    </ul>
+                </div>
+            </aside>
+            <aside class="rounded shadow overflow-hidden mb-6">
+                <h3 class="text-sm bg-gray-100 text-gray-700 py-3 px-4 border-b">Latest Posts</h3>
+
+                <div class="p-4">
+                    <ul class="list-reset leading-normal">
+                        {% for post in allPosts  %}
+                        <li><a href="#" class="text-gray-darkest text-sm">{{post.title|safe |truncatechars:30}}.</a></li>
+
+                    {%endfor%}
+                    </ul>
+                </div>
+            </aside>
+
+        </div>
+        <!-- /sidebar -->
+
+    </div>
+
+</div>
+<!-- /blog -->
+
+ {% endblock %}

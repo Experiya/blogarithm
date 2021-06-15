@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %} Contact{% endblock title %}
+{%block contactactive%}active{%endblock contactactive%}
+{% block body %}
+<div class="container my-3">
+<div class="container max-w-4xl mx-auto pb-10 px-12 md:px-0">
+
+  <div class="flex flex-wrap justify-start items-start -mx-4">
+
+    <div class="w-full md:w-1/2 p-4">
+      
+      <form action="/contact" method="post">
+        {% csrf_token %}
+        <fieldset class="mb-4">
+          <label class="block text-sm text-gray-dark pb-2">Name</label>
+          <input type="text"  class="form-control block w-full border rounded py-2 px-3 text-sm text-gray-700" id="name" name="name"aria-describedby="name">
+          <p class="text-xs pt-2 text-gray">This is some helper text...</p>
+        </fieldset>
+
+        <fieldset class="mb-4">
+          <label class="block text-sm text-gray-dark pb-2">Email</label>
+          <input type="email" class="form-control block w-full border rounded py-2 px-3 text-sm text-gray-700" id="email" name="email" aria-describedby="emailHelp">
+        </fieldset>
+        <fieldset class="mb-4">
+          <label class="block text-sm text-gray-dark pb-2">Phone Number</label>
+          <input type="tel" class="form-control form-control block w-full border rounded py-2 px-3 text-sm text-gray-700" id="phone" name="phone">
+        </fieldset>
+
+        <fieldset class="mb-4">
+          <label class="block text-sm text-gray-dark pb-2">Message</label>
+          <textarea class="block w-full border border-red-300er rounded py-2 px-3 text-sm text-gray-700 h-32" name="content" id="content" cols="30" rows="5"></textarea>
+          <p class="text-xs pt-2 text-red-400">This field is required...</p>
+        </fieldset>
+
+        <button class="text-sm py-2 px-3 bg-black text-white rounded">Submit</button>
+      </form>
+
+    </div>
+    </div>
+ {% endblock %}
